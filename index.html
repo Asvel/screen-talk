@@ -20,27 +20,23 @@
   </style>
 </head>
 <body>
-  <div id="main" contenteditable="true">
-    Screen Talk
-  </div>
+  <div id="main" contenteditable="true"></div>
   <script>
     var $main = document.querySelector('#main');
-    resizeText = function () {
+
+    function resizeText () {
       var fontSize = 400;
+      console.log($main.innerText);
       do {
         $main.style.fontSize = fontSize + 'px';
         fontSize -= 10;
       } while ($main.clientHeight > window.innerHeight);
-    };
+    }
     resizeText();
     window.addEventListener('resize', resizeText, false);
     window.addEventListener('keyup', resizeText, false);
 
-    var selectAll = function (e) {
-      document.execCommand('selectAll');
-      e.preventDefault();
-    };
-    $main.addEventListener('dblclick', selectAll, true);
+    $main.focus();
   </script>
 </body>
 </html>
