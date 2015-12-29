@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Screen Talk</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    #main {
+      box-sizing: border-box;
+      padding: 20px;
+      text-align: center;
+      font-family: sans-serif;
+      font-weight: 700;
+      font-size: 200px;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="main" contenteditable="true">
+    Screen Talk
+  </div>
+  <script>
+    var $main = document.querySelector('#main');
+    resizeText = function () {
+      var fontSize = 400;
+      do {
+        $main.style.fontSize = fontSize + 'px';
+        fontSize -= 10;
+      } while ($main.clientHeight > window.innerHeight);
+    };
+    resizeText();
+    window.addEventListener('resize', resizeText, false);
+    window.addEventListener('keyup', resizeText, false);
+
+    var selectAll = function (e) {
+      document.execCommand('selectAll');
+      e.preventDefault();
+    };
+    $main.addEventListener('dblclick', selectAll, true);
+  </script>
+</body>
+</html>
