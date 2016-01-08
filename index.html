@@ -25,9 +25,18 @@
   <script>
     var $main = document.querySelector('#main');
 
+    function setTextFromHash () {
+      $main.innerText = decodeURI(location.hash.slice(1));
+    }
+    function setHashFromText () {
+      location.hash = encodeURI($main.innerText);
+    }
+    setTextFromHash();
+    window.addEventListener('hashchange', setTextFromHash);
+    window.addEventListener('keyup', setHashFromText);
+
     function resizeText () {
       var fontSize = 400;
-      console.log($main.innerText);
       do {
         $main.style.fontSize = fontSize + 'px';
         fontSize -= 10;
