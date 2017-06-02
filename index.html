@@ -26,7 +26,10 @@
     var $main = document.querySelector('#main');
 
     function setTextFromHash () {
-      $main.innerText = decodeURI(location.hash.slice(1));
+      var text = decodeURI(location.hash.slice(1));
+      if (text !== $main.innerText) {
+        $main.innerText = text;
+      }
     }
     function setHashFromText () {
       location.hash = encodeURI($main.innerText);
